@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://mcmakler:mcmakler123@cluster0.sy29c.mongodb.net/mcmakler?retryWrites=true&w=majority"
+}

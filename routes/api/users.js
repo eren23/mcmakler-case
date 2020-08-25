@@ -1,0 +1,93 @@
+const express = require("express");
+const router = express.Router();
+const { check, validationResult } = require("express-validator");
+const config = require("config");
+const User = require("../models/User");
+
+// @route       POST api/users
+// @desc        Register user
+// @access      Public
+router.post(
+  "/",
+  [
+    check("name", "Name is required").not().isEmpty(),
+    check("surname", "Please inclue a valid email").not().isEmpty(),
+    check("email", "Please inclue a valid email").isEmail(),
+    check("phone", "Please inclue a valid email").not().isEmpty(),
+    check("status", "Please inclue a valid email").not().isEmpty(),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { name, surname, email, phone, bid, status } = req.body;
+
+    try {
+      //SEE IF THE USER EXISTS
+      let user = await User.findOne({ email });
+      if (user) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "User already exist" }] });
+      }
+
+      user = new User({
+        name,
+        surname,
+        email,
+        phone,
+        bid,
+        status,
+      });
+
+      //the line below saves user to the database
+      await user.save();
+      res.json({ user });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    }
+  }
+);
+
+// @route       GET api/users/
+// @desc        Get all users
+// @access      Public
+router.get("/", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("server error");
+  }
+});
+
+// @route       GET api/users/
+// @desc        Get all users
+// @access      Public
+router.get("/search", async (req, res) => {
+  try {
+    const searchquery = req.query.searchquery;
+    const user = await User.findOne({
+      $or: [
+        { name: searchquery },
+        { surname: searchquery },
+        { email: searchquery },
+      ],
+    });
+    if (user) {
+      res.json(user);
+    } else {
+      res.json({ response: "Query Failed" });
+    }
+    console.log(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("server error");
+  }
+});
+
+module.exports = router;
