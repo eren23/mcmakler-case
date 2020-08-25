@@ -1,16 +1,12 @@
 import React from "react";
-import { CardDeck, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 const ApplicantCard = (props) => {
   const { name, surname, email, status, bid } = props;
   return (
     <div>
       <Card>
-        <Card.Img
-          variant="top"
-          src="holder.js/100px160"
-          alt="Alternative Text"
-        />
+        <Card.Img variant="top" alt="Alternative Text" />
         <Card.Body>
           <Card.Title>
             {name} {surname}
