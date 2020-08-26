@@ -1,47 +1,44 @@
-import React, { useState } from "react";
-import {
-  NavDropdown,
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import React from "react";
+import { Navbar, Nav } from "react-bootstrap";
 
-const NavbarComponent = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
-
+const UpperNavbar = () => {
   return (
     <div>
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-        </Navbar.Collapse>
+      <Navbar style={{ backgroundColor: "#E5E5E5" }} expand="lg">
+        <Nav className="mr-auto">
+          <Navbar.Brand>
+            {" "}
+            <img
+              src={require("../../static/ic-menu_link.svg")}
+              alt="Menu"
+            ></img>{" "}
+          </Navbar.Brand>
+          <Navbar.Brand href="/">
+            <strong>McMakler</strong>
+          </Navbar.Brand>
+        </Nav>
+        <Navbar.Text className="d-none d-sm-block text-center mx-2">
+          <img
+            src={require("../../static/ic-contact_support.svg")}
+            alt="Support"
+          ></img>{" "}
+          Contact Support
+        </Navbar.Text>
+        <Navbar.Text className="text-center mx-2">
+          <img src={require("../../static/active.svg")} alt="Message"></img>
+        </Navbar.Text>
+        <Navbar.Text className="d-none d-sm-block text-center mx-2">
+          <img src={require("../../static/ic-user.svg")} alt="Profile"></img>
+        </Navbar.Text>
+        <Navbar.Text className="d-none d-sm-block text-center mx-2">
+          <img
+            src={require("../../static/ic-power_settings_new.svg")}
+            alt="Logout"
+          ></img>
+        </Navbar.Text>
       </Navbar>
     </div>
   );
 };
 
-export default NavbarComponent;
+export default UpperNavbar;

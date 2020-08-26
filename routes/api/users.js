@@ -72,7 +72,7 @@ router.get("/search", async (req, res) => {
   try {
     const searchquery = req.query.searchquery;
     if (searchquery) {
-      const user = await User.findOne({
+      const user = await User.find({
         $or: [
           { name: searchquery },
           { surname: searchquery },
@@ -80,7 +80,7 @@ router.get("/search", async (req, res) => {
         ],
       });
       if (user) {
-        res.json([user]);
+        res.json(user);
       } else {
         res.json({ response: "Query Failed" });
       }
@@ -89,7 +89,7 @@ router.get("/search", async (req, res) => {
       res.json(user);
     }
 
-    console.log(user);
+    // console.log(user);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("server error");

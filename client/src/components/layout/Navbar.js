@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  NavDropdown,
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Nav, Form, FormControl, NavDropdown } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { searchUser } from "../../actions/getUsers";
@@ -16,31 +9,36 @@ const NavbarComponent = ({ searchUser }) => {
     e.preventDefault();
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
-    console.log(formDataObj);
+    // console.log(formDataObj);
     searchUser(formDataObj.myInput);
   };
 
   return (
     <div>
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            {/* <Nav.Link href="/">Home</Nav.Link> */}
-          </Nav>
-          <Form onSubmit={onFormSubmit}>
+      <Navbar style={{ backgroundColor: "#FFFFFF" }} expand="lg">
+        <Nav className="mr-auto">
+          <Form inline onSubmit={onFormSubmit}>
             <FormControl
               type="text"
               placeholder="Search"
               name="myInput"
-              className="mr-sm-2"
+              className="mr-sm-1"
             />
-            <Button type="submit" variant="outline-success">
+            <NavDropdown title="Bids" id="basic-nav-dropdown">
+              <NavDropdown.Item>From Lower</NavDropdown.Item>
+              <NavDropdown.Item>From Higher</NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Status" id="basic-nav-dropdown">
+              <NavDropdown.Item>Action</NavDropdown.Item>
+              <NavDropdown.Item>Another action</NavDropdown.Item>
+              <NavDropdown.Item>Something</NavDropdown.Item>
+              <NavDropdown.Item>Something</NavDropdown.Item>
+            </NavDropdown>
+            {/* <Button type="submit" variant="outline-success">
               Search
-            </Button>
+            </Button> */}
           </Form>
-        </Navbar.Collapse>
+        </Nav>
       </Navbar>
     </div>
   );

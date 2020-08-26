@@ -25,3 +25,4 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";
 export const SEARCH_USER = "SEARCH_USER";
 export const SEARCH_ERROR = "SEARCH_ERROR";
+export const SET_AMOUNT = "SET_AMOUNT";

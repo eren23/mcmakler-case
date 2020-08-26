@@ -6,26 +6,14 @@ import Loader from "react-loader-spinner";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getUsers } from "../../actions/getUsers";
+import { v4 as uuidv4 } from "uuid";
 
 const Applicants = ({ getUsers, post: { posts, loading } }) => {
-  // const [applicants, setApplicants] = useState([]);
-  // const [floading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await axios.get("/api/users");
-  //     setApplicants(response.data);
-  //     setLoading(true);
-  //   };
-  //   fetchData();
-  // }, []);
-
   useEffect(() => {
     getUsers();
   }, [getUsers]);
 
   const uniq = [...new Set(posts.map((post) => post.status))];
-  console.log(uniq);
   return (
     <div>
       {uniq.map((status) => {
@@ -34,32 +22,30 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
             (filt) => filt.status === "Appointment_Set"
           );
           return (
-            <div>
-              <h1>
-                Appointment_Set <br />
-              </h1>
-              <CardDeck>
+            <div key={uuidv4()}>
+              <h1 className="my-3">Appointment Set</h1>
+              <CardDeck className="justify-content-between">
                 {filtered.map((status) => {
-                  {
-                    return loading === true ? (
-                      <Loader
-                        type="Puff"
-                        color="#00BFFF"
-                        height={100}
-                        width={100}
-                        timeout={3000} //3 secs
-                      />
-                    ) : (
-                      <ApplicantCard
-                        key={status._id}
-                        name={status.name}
-                        surname={status.surname}
-                        email={status.email}
-                        bid={status.bid}
-                        status={status.status}
-                      />
-                    );
-                  }
+                  return loading === true ? (
+                    <Loader
+                      type="Puff"
+                      color="#00BFFF"
+                      height={100}
+                      width={100}
+                      timeout={3000} //3 secs
+                    />
+                  ) : (
+                    <ApplicantCard
+                      key={status._id}
+                      name={status.name}
+                      surname={status.surname}
+                      email={status.email}
+                      bid={status.bid}
+                      status={status.status}
+                      date={status.date}
+                      phone={status.phone}
+                    />
+                  );
                 })}
               </CardDeck>
             </div>
@@ -69,30 +55,30 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
             (filt) => filt.status === "Propety_Viewed"
           );
           return (
-            <div>
-              <h1>Propety_Viewed</h1>
-              <CardDeck>
+            <div key={uuidv4()}>
+              <h1 className="my-3">Propety Viewed</h1>
+              <CardDeck className="justify-content-between">
                 {filtered.map((status) => {
-                  {
-                    return loading === true ? (
-                      <Loader
-                        type="Puff"
-                        color="#00BFFF"
-                        height={100}
-                        width={100}
-                        timeout={3000} //3 secs
-                      />
-                    ) : (
-                      <ApplicantCard
-                        key={status._id}
-                        name={status.name}
-                        surname={status.surname}
-                        email={status.email}
-                        bid={status.bid}
-                        status={status.status}
-                      />
-                    );
-                  }
+                  return loading === true ? (
+                    <Loader
+                      type="Puff"
+                      color="#00BFFF"
+                      height={100}
+                      width={100}
+                      timeout={3000} //3 secs
+                    />
+                  ) : (
+                    <ApplicantCard
+                      key={status._id}
+                      name={status.name}
+                      surname={status.surname}
+                      email={status.email}
+                      bid={status.bid}
+                      status={status.status}
+                      date={status.date}
+                      phone={status.phone}
+                    />
+                  );
                 })}
               </CardDeck>
             </div>
@@ -100,30 +86,38 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
         } else if (status === "Interested") {
           const filtered = posts.filter((filt) => filt.status === "Interested");
           return (
-            <div>
-              <h1>Interested</h1>
-              <CardDeck>
+            <div key={uuidv4()}>
+              <h1 className="my-3">Interested</h1>
+              <CardDeck
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingBottom: "100px",
+                  flexWrap: "wrap",
+                }}
+                className="justify-content-between"
+              >
                 {filtered.map((status) => {
-                  {
-                    return loading === true ? (
-                      <Loader
-                        type="Puff"
-                        color="#00BFFF"
-                        height={100}
-                        width={100}
-                        timeout={3000} //3 secs
-                      />
-                    ) : (
-                      <ApplicantCard
-                        key={status._id}
-                        name={status.name}
-                        surname={status.surname}
-                        email={status.email}
-                        bid={status.bid}
-                        status={status.status}
-                      />
-                    );
-                  }
+                  return loading === true ? (
+                    <Loader
+                      type="Puff"
+                      color="#00BFFF"
+                      height={100}
+                      width={100}
+                      timeout={3000} //3 secs
+                    />
+                  ) : (
+                    <ApplicantCard
+                      key={status._id}
+                      name={status.name}
+                      surname={status.surname}
+                      email={status.email}
+                      bid={status.bid}
+                      status={status.status}
+                      date={status.date}
+                      phone={status.phone}
+                    />
+                  );
                 })}
               </CardDeck>
             </div>
@@ -133,30 +127,30 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
             (filt) => filt.status === "Offer_Accepted"
           );
           return (
-            <div>
-              <h1>Offer_Accepted</h1>
-              <CardDeck>
+            <div key={uuidv4()}>
+              <h1 className="my-3">Offer Accepted</h1>
+              <CardDeck className="justify-content-between">
                 {filtered.map((status) => {
-                  {
-                    return loading === true ? (
-                      <Loader
-                        type="Puff"
-                        color="#00BFFF"
-                        height={100}
-                        width={100}
-                        timeout={3000} //3 secs
-                      />
-                    ) : (
-                      <ApplicantCard
-                        key={status._id}
-                        name={status.name}
-                        surname={status.surname}
-                        email={status.email}
-                        bid={status.bid}
-                        status={status.status}
-                      />
-                    );
-                  }
+                  return loading === true ? (
+                    <Loader
+                      type="Puff"
+                      color="#00BFFF"
+                      height={100}
+                      width={100}
+                      timeout={3000} //3 secs
+                    />
+                  ) : (
+                    <ApplicantCard
+                      key={status._id}
+                      name={status.name}
+                      surname={status.surname}
+                      email={status.email}
+                      bid={status.bid}
+                      status={status.status}
+                      date={status.date}
+                      phone={status.phone}
+                    />
+                  );
                 })}
               </CardDeck>
             </div>
