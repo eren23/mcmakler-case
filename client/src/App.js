@@ -8,7 +8,12 @@ import store from "./store";
 
 function App() {
   return (
-    <div style={{ backgroundColor: "#E5E5E5" }}>
+    <div
+      style={{
+        backgroundColor: "#E5E5E5",
+        minHeight: "100vh",
+      }}
+    >
       <div className="container">
         <UpperNavbar />
       </div>

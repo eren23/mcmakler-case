@@ -3,7 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 
 const UpperNavbar = () => {
   return (
-    <div>
+    <div className="mh-100">
       <Navbar style={{ backgroundColor: "#E5E5E5" }} expand="lg">
         <Nav className="mr-auto">
           <Navbar.Brand>

@@ -6,7 +6,9 @@ const ApplicantCard = (props) => {
   const { name, surname, email, status, bid, date, phone } = props;
   const initialName = name.charAt(0);
   const initialSurname = surname.charAt(0);
+
   const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+
   const LightenDarkenColor = (col, amt) => {
     let usePound = false;
 
@@ -86,11 +88,16 @@ const ApplicantCard = (props) => {
             </small>
           </Card.Text>
           {bid && (
-            <Card.Text
-              style={{ backgroundColor: "#FEB902", borderRadius: "2px" }}
-              className="text-center m-1"
-            >
-              {formattedMoney}
+            <Card.Text className="text-center m-1">
+              <span
+                style={{
+                  backgroundColor: "#FEB902",
+                  borderRadius: "2px",
+                  color: "#FFFFFF",
+                }}
+              >
+                {formattedMoney}
+              </span>
             </Card.Text>
           )}
         </Card.Body>

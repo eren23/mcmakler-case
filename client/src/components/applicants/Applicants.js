@@ -15,7 +15,11 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
 
   const uniq = [...new Set(posts.map((post) => post.status))];
   return (
-    <div>
+    <div
+      style={{
+        minHeight: "70vh",
+      }}
+    >
       {uniq.map((status) => {
         if (status === "Appointment_Set") {
           const filtered = posts.filter(
