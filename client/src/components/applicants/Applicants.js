@@ -6,11 +6,25 @@ import Loader from "react-loader-spinner";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getUsers } from "../../actions/getUsers";
-import { v4 as uuidv4 } from "uuid";
+import { searchUser } from "../../actions/getUsers";
 
-const Applicants = ({ getUsers, post: { posts, loading } }) => {
+import { v4 as uuidv4 } from "uuid";
+import queryString from "query-string";
+
+const Applicants = ({
+  location,
+  getUsers,
+  searchUser,
+  post: { posts, loading },
+}) => {
   useEffect(() => {
-    getUsers();
+    const values = queryString.parse(location.search);
+    console.log(values);
+    if (values.search) {
+      searchUser(values.search);
+    } else {
+      getUsers();
+    }
   }, [getUsers]);
 
   const uniq = [...new Set(posts.map((post) => post.status))];
@@ -179,6 +193,7 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
 
 Applicants.propTypes = {
   getUsers: PropTypes.func.isRequired,
+  searchUser: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
 
@@ -186,4 +201,4 @@ const mapStateToProps = (state) => ({
   post: state.applicants,
 });
 
-export default connect(mapStateToProps, { getUsers })(Applicants);
+export default connect(mapStateToProps, { getUsers, searchUser })(Applicants);

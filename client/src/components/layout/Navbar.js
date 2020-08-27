@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar, Nav, Form, FormControl, NavDropdown } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { searchUser } from "../../actions/getUsers";
+import { Redirect } from "react-router-dom";
 
 const NavbarComponent = ({ searchUser }) => {
+  const [query, setQuery] = useState("");
+  const [fireRedirect, setFireRedirect] = useState(false);
+
   const onFormSubmit = (e) => {
+    // <Redirect
+    //   to={{
+    //     pathname: "/page",
+    //     search: "?search=formDataObj.myInput",
+    //   }}
+    // />;
     e.preventDefault();
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
     searchUser(formDataObj.myInput);
+
+    setQuery(formDataObj.myInput);
+    setFireRedirect(true);
   };
 
   return (
@@ -51,10 +64,8 @@ const NavbarComponent = ({ searchUser }) => {
               <NavDropdown.Item>Interested</NavDropdown.Item>
               <NavDropdown.Item>Offer Accepted</NavDropdown.Item>
             </NavDropdown>
-            {/* <Button type="submit" variant="outline-success">
-              Search
-            </Button> */}
           </Form>
+          {fireRedirect && <Redirect to={"/page/?search=" + query} />}
         </Nav>
       </Navbar>
     </div>

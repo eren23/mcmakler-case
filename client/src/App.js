@@ -26,7 +26,7 @@ function App() {
             <MiddleNavbar />
             <NavbarComponent />
             <Switch>
-              <Route exact path="/" component={Applicants} />
+              <Route exact path="/page" component={Applicants} />
             </Switch>
           </div>
           <div className="container">
