@@ -1,12 +1,11 @@
 import axios from "axios";
-import { POST_ERROR, UPDATE_LIKES, SEARCH_USER, SEARCH_ERROR } from "./types";
+import { POST_ERROR, GET_POSTS, SEARCH_USER, SEARCH_ERROR } from "./types";
 
 export const getUsers = () => async (dispatch) => {
   try {
     const res = await axios.get(`/api/users/`);
-    // console.log(res.data);
     dispatch({
-      type: UPDATE_LIKES,
+      type: GET_POSTS,
       payload: res.data,
     });
   } catch (err) {
@@ -20,7 +19,6 @@ export const getUsers = () => async (dispatch) => {
 export const searchUser = (query) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/users/search?searchquery=${query}`);
-    // console.log(res.data);
     dispatch({
       type: SEARCH_USER,
       payload: res.data,

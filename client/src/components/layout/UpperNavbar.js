@@ -13,10 +13,10 @@ const UpperNavbar = () => {
               alt="Menu"
             ></img>{" "}
           </Navbar.Brand>
-          <Navbar.Brand href="/">
-            <strong>McMakler</strong>
-          </Navbar.Brand>
         </Nav>
+        <Navbar.Brand className="ml-1 mr-auto mx-sm-auto" href="/">
+          <strong>McMakler</strong>
+        </Navbar.Brand>
         <Navbar.Text className="d-none d-sm-block text-center mx-2">
           <img
             src={require("../../static/ic-contact_support.svg")}

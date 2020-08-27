@@ -3,6 +3,7 @@ import Applicants from "./components/applicants/Applicants";
 import NavbarComponent from "./components/layout/Navbar";
 import MiddleNavbar from "./components/layout/MiddleNavbar";
 import UpperNavbar from "./components/layout/UpperNavbar";
+import Footer from "./components/layout/Footer";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -24,6 +25,9 @@ function App() {
           <NavbarComponent />
           <Applicants />
         </Provider>
+      </div>
+      <div className="container">
+        <Footer />
       </div>
     </div>
   );

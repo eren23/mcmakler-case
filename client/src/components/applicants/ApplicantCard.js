@@ -50,7 +50,7 @@ const ApplicantCard = (props) => {
 
   return (
     <div>
-      <Card className="my-1">
+      <Card className="mt-1 mb-4">
         <p
           className="position-flex text-center rounded-circle"
           style={{
@@ -96,7 +96,7 @@ const ApplicantCard = (props) => {
                   color: "#FFFFFF",
                 }}
               >
-                {formattedMoney}
+                <strong>{formattedMoney}</strong>
               </span>
             </Card.Text>
           )}

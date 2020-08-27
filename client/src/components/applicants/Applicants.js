@@ -14,10 +14,23 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
   }, [getUsers]);
 
   const uniq = [...new Set(posts.map((post) => post.status))];
+
+  const filteredApp = posts.filter((filt) => filt.status === "Appointment_Set");
+  const filteredView = posts.filter((filt) => filt.status === "Propety_Viewed");
+  const filteredInterest = posts.filter((filt) => filt.status === "Interested");
+  const filteredOffer = posts.filter(
+    (filt) => filt.status === "Offer_Accepted"
+  );
+
+  const appNum = filteredApp.length;
+  const viewNum = filteredView.length;
+  const interestNum = filteredInterest.length;
+  const offerNum = filteredOffer.length;
+
   return (
     <div
       style={{
-        minHeight: "70vh",
+        minHeight: "74vh",
       }}
     >
       {uniq.map((status) => {
@@ -27,8 +40,13 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
           );
           return (
             <div key={uuidv4()}>
-              <h1 className="my-3">Appointment Set</h1>
-              <CardDeck className="justify-content-between">
+              <h4 className="my-3">Appointment Set ({appNum})</h4>
+              <CardDeck
+                style={{
+                  paddingBottom: "25px",
+                }}
+                className="justify-content-between"
+              >
                 {filtered.map((status) => {
                   return loading === true ? (
                     <Loader
@@ -60,8 +78,13 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
           );
           return (
             <div key={uuidv4()}>
-              <h1 className="my-3">Propety Viewed</h1>
-              <CardDeck className="justify-content-between">
+              <h4 className="my-3">Propety Viewed ({viewNum})</h4>
+              <CardDeck
+                style={{
+                  marginBottom: "25px",
+                }}
+                className="justify-content-between"
+              >
                 {filtered.map((status) => {
                   return loading === true ? (
                     <Loader
@@ -91,13 +114,10 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
           const filtered = posts.filter((filt) => filt.status === "Interested");
           return (
             <div key={uuidv4()}>
-              <h1 className="my-3">Interested</h1>
+              <h4 className="my-3">Interested ({interestNum})</h4>
               <CardDeck
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: "100px",
-                  flexWrap: "wrap",
+                  marginBottom: "25px",
                 }}
                 className="justify-content-between"
               >
@@ -132,8 +152,13 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
           );
           return (
             <div key={uuidv4()}>
-              <h1 className="my-3">Offer Accepted</h1>
-              <CardDeck className="justify-content-between">
+              <h4 className="my-3">Offer Accepted ({offerNum})</h4>
+              <CardDeck
+                style={{
+                  marginBottom: "25px",
+                }}
+                className="justify-content-between"
+              >
                 {filtered.map((status) => {
                   return loading === true ? (
                     <Loader

@@ -24,15 +24,33 @@ const NavbarComponent = ({ searchUser }) => {
               name="myInput"
               className="mr-sm-1"
             />
-            <NavDropdown title="Bids" id="basic-nav-dropdown">
+            <NavDropdown
+              style={{
+                border: "1px solid #E6E6E6",
+                borderRadius: "3px",
+                marginRight: "5px",
+                marginTop: "2px",
+              }}
+              title="Bids"
+              id="basic-nav-dropdown"
+            >
               <NavDropdown.Item>From Lower</NavDropdown.Item>
               <NavDropdown.Item>From Higher</NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Status" id="basic-nav-dropdown">
-              <NavDropdown.Item>Action</NavDropdown.Item>
-              <NavDropdown.Item>Another action</NavDropdown.Item>
-              <NavDropdown.Item>Something</NavDropdown.Item>
-              <NavDropdown.Item>Something</NavDropdown.Item>
+            <NavDropdown
+              style={{
+                border: "1px solid #E6E6E6",
+                borderRadius: "3px",
+                marginRight: "5px",
+                marginTop: "2px",
+              }}
+              title="Status"
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item>Appointment Set</NavDropdown.Item>
+              <NavDropdown.Item>Property Viewed</NavDropdown.Item>
+              <NavDropdown.Item>Interested</NavDropdown.Item>
+              <NavDropdown.Item>Offer Accepted</NavDropdown.Item>
             </NavDropdown>
             {/* <Button type="submit" variant="outline-success">
               Search
