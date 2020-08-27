@@ -9,7 +9,6 @@ const NavbarComponent = ({ searchUser }) => {
     e.preventDefault();
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
-    // console.log(formDataObj);
     searchUser(formDataObj.myInput);
   };
 

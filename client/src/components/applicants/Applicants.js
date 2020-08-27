@@ -33,159 +33,146 @@ const Applicants = ({ getUsers, post: { posts, loading } }) => {
         minHeight: "74vh",
       }}
     >
-      {uniq.map((status) => {
-        if (status === "Appointment_Set") {
-          const filtered = posts.filter(
-            (filt) => filt.status === "Appointment_Set"
-          );
-          return (
-            <div key={uuidv4()}>
-              <h4 className="my-3">Appointment Set ({appNum})</h4>
-              <CardDeck
-                style={{
-                  paddingBottom: "25px",
-                }}
-                className="justify-content-between"
-              >
-                {filtered.map((status) => {
-                  return loading === true ? (
-                    <Loader
-                      type="Puff"
-                      color="#00BFFF"
-                      height={100}
-                      width={100}
-                      timeout={3000} //3 secs
-                    />
-                  ) : (
-                    <ApplicantCard
-                      key={status._id}
-                      name={status.name}
-                      surname={status.surname}
-                      email={status.email}
-                      bid={status.bid}
-                      status={status.status}
-                      date={status.date}
-                      phone={status.phone}
-                    />
-                  );
-                })}
-              </CardDeck>
-            </div>
-          );
-        } else if (status === "Propety_Viewed") {
-          const filtered = posts.filter(
-            (filt) => filt.status === "Propety_Viewed"
-          );
-          return (
-            <div key={uuidv4()}>
-              <h4 className="my-3">Propety Viewed ({viewNum})</h4>
-              <CardDeck
-                style={{
-                  marginBottom: "25px",
-                }}
-                className="justify-content-between"
-              >
-                {filtered.map((status) => {
-                  return loading === true ? (
-                    <Loader
-                      type="Puff"
-                      color="#00BFFF"
-                      height={100}
-                      width={100}
-                      timeout={3000} //3 secs
-                    />
-                  ) : (
-                    <ApplicantCard
-                      key={status._id}
-                      name={status.name}
-                      surname={status.surname}
-                      email={status.email}
-                      bid={status.bid}
-                      status={status.status}
-                      date={status.date}
-                      phone={status.phone}
-                    />
-                  );
-                })}
-              </CardDeck>
-            </div>
-          );
-        } else if (status === "Interested") {
-          const filtered = posts.filter((filt) => filt.status === "Interested");
-          return (
-            <div key={uuidv4()}>
-              <h4 className="my-3">Interested ({interestNum})</h4>
-              <CardDeck
-                style={{
-                  marginBottom: "25px",
-                }}
-                className="justify-content-between"
-              >
-                {filtered.map((status) => {
-                  return loading === true ? (
-                    <Loader
-                      type="Puff"
-                      color="#00BFFF"
-                      height={100}
-                      width={100}
-                      timeout={3000} //3 secs
-                    />
-                  ) : (
-                    <ApplicantCard
-                      key={status._id}
-                      name={status.name}
-                      surname={status.surname}
-                      email={status.email}
-                      bid={status.bid}
-                      status={status.status}
-                      date={status.date}
-                      phone={status.phone}
-                    />
-                  );
-                })}
-              </CardDeck>
-            </div>
-          );
-        } else {
-          const filtered = posts.filter(
-            (filt) => filt.status === "Offer_Accepted"
-          );
-          return (
-            <div key={uuidv4()}>
-              <h4 className="my-3">Offer Accepted ({offerNum})</h4>
-              <CardDeck
-                style={{
-                  marginBottom: "25px",
-                }}
-                className="justify-content-between"
-              >
-                {filtered.map((status) => {
-                  return loading === true ? (
-                    <Loader
-                      type="Puff"
-                      color="#00BFFF"
-                      height={100}
-                      width={100}
-                      timeout={3000} //3 secs
-                    />
-                  ) : (
-                    <ApplicantCard
-                      key={status._id}
-                      name={status.name}
-                      surname={status.surname}
-                      email={status.email}
-                      bid={status.bid}
-                      status={status.status}
-                      date={status.date}
-                      phone={status.phone}
-                    />
-                  );
-                })}
-              </CardDeck>
-            </div>
-          );
-        }
-      })}
+      {loading ? (
+        <Loader
+          type="ThreeDots"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            /* bring your own prefixes */
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+      ) : (
+        uniq.map((status) => {
+          if (status === "Appointment_Set") {
+            const filtered = posts.filter(
+              (filt) => filt.status === "Appointment_Set"
+            );
+            return (
+              <div key={uuidv4()}>
+                <h4 className="my-3">Appointment Set ({appNum})</h4>
+                <CardDeck
+                  style={{
+                    paddingBottom: "25px",
+                  }}
+                  className="justify-content-between"
+                >
+                  {filtered.map((status) => {
+                    return (
+                      <ApplicantCard
+                        key={status._id}
+                        name={status.name}
+                        surname={status.surname}
+                        email={status.email}
+                        bid={status.bid}
+                        status={status.status}
+                        date={status.date}
+                        phone={status.phone}
+                      />
+                    );
+                  })}
+                </CardDeck>
+              </div>
+            );
+          } else if (status === "Propety_Viewed") {
+            const filtered = posts.filter(
+              (filt) => filt.status === "Propety_Viewed"
+            );
+            return (
+              <div key={uuidv4()}>
+                <h4 className="my-3">Propety Viewed ({viewNum})</h4>
+                <CardDeck
+                  style={{
+                    marginBottom: "25px",
+                  }}
+                  className="justify-content-between"
+                >
+                  {filtered.map((status) => {
+                    return (
+                      <ApplicantCard
+                        key={status._id}
+                        name={status.name}
+                        surname={status.surname}
+                        email={status.email}
+                        bid={status.bid}
+                        status={status.status}
+                        date={status.date}
+                        phone={status.phone}
+                      />
+                    );
+                  })}
+                </CardDeck>
+              </div>
+            );
+          } else if (status === "Interested") {
+            const filtered = posts.filter(
+              (filt) => filt.status === "Interested"
+            );
+            return (
+              <div key={uuidv4()}>
+                <h4 className="my-3">Interested ({interestNum})</h4>
+                <CardDeck
+                  style={{
+                    marginBottom: "25px",
+                  }}
+                  className="justify-content-between"
+                >
+                  {filtered.map((status) => {
+                    return (
+                      <ApplicantCard
+                        key={status._id}
+                        name={status.name}
+                        surname={status.surname}
+                        email={status.email}
+                        bid={status.bid}
+                        status={status.status}
+                        date={status.date}
+                        phone={status.phone}
+                      />
+                    );
+                  })}
+                </CardDeck>
+              </div>
+            );
+          } else {
+            const filtered = posts.filter(
+              (filt) => filt.status === "Offer_Accepted"
+            );
+            return (
+              <div key={uuidv4()}>
+                <h4 className="my-3">Offer Accepted ({offerNum})</h4>
+                <CardDeck
+                  style={{
+                    marginBottom: "25px",
+                  }}
+                  className="justify-content-between"
+                >
+                  {filtered.map((status) => {
+                    return (
+                      <ApplicantCard
+                        key={status._id}
+                        name={status.name}
+                        surname={status.surname}
+                        email={status.email}
+                        bid={status.bid}
+                        status={status.status}
+                        date={status.date}
+                        phone={status.phone}
+                      />
+                    );
+                  })}
+                </CardDeck>
+              </div>
+            );
+          }
+        })
+      )}
     </div>
   );
 };

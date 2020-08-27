@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const UpperNavbar = () => {
   return (
@@ -14,8 +15,10 @@ const UpperNavbar = () => {
             ></img>{" "}
           </Navbar.Brand>
         </Nav>
-        <Navbar.Brand className="ml-1 mr-auto mx-sm-auto" href="/">
-          <strong>McMakler</strong>
+        <Navbar.Brand className="mr-auto mx-sm-auto">
+          <strong>
+            <Link to="/">McMakler</Link>
+          </strong>
         </Navbar.Brand>
         <Navbar.Text className="d-none d-sm-block text-center mx-2">
           <img

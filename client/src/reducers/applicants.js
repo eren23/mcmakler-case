@@ -17,11 +17,11 @@ export default function (state = initialState, action) {
     case GET_POSTS:
       return { ...state, posts: payload, loading: false };
     case POST_ERROR:
-      return { ...state, error: payload };
+      return { ...state, error: payload, loading: false };
     case SEARCH_USER:
       return { ...state, posts: payload, loading: false };
     case SEARCH_ERROR:
-      return { ...state, error: payload };
+      return { ...state, error: payload, loading: false };
 
     default:
       return state;

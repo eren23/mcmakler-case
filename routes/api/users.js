@@ -25,7 +25,6 @@ router.post(
     const { name, surname, email, phone, bid, status } = req.body;
 
     try {
-      //SEE IF THE USER EXISTS
       let user = await User.findOne({ email });
       if (user) {
         return res
@@ -42,7 +41,6 @@ router.post(
         status,
       });
 
-      //the line below saves user to the database
       await user.save();
       res.json({ user });
     } catch (err) {
@@ -65,8 +63,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @route       GET api/users/
-// @desc        Get all users
+// @route       GET api/users/search?searchquery=
+// @desc        Search for the
 // @access      Public
 router.get("/search", async (req, res) => {
   try {
@@ -82,14 +80,12 @@ router.get("/search", async (req, res) => {
       if (user) {
         res.json(user);
       } else {
-        res.json({ response: "Query Failed" });
+        res.status(400).send({ response: "Query Failed" });
       }
     } else {
       const user = await User.find();
       res.json(user);
     }
-
-    // console.log(user);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("server error");
