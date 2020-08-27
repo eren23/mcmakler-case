@@ -14,7 +14,7 @@ const MiddleNavbar = ({ post: { posts } }) => {
     <div>
       <Navbar style={{ backgroundColor: "#FFFFFF" }} expand="lg">
         <Nav className="mr-auto">
-          <Navbar.Brand href="/">
+          <Navbar.Brand href="/page">
             <img src={require("../../static/back.svg")} alt="Support"></img>{" "}
             Applicants
           </Navbar.Brand>

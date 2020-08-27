@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getUsers } from "../../actions/getUsers";
 import { searchUser } from "../../actions/getUsers";
-
 import { v4 as uuidv4 } from "uuid";
 import queryString from "query-string";
 
@@ -25,7 +24,7 @@ const Applicants = ({
     } else {
       getUsers();
     }
-  }, [getUsers]);
+  }, [getUsers, searchUser]);
 
   const uniq = [...new Set(posts.map((post) => post.status))];
 
@@ -58,7 +57,6 @@ const Applicants = ({
             position: "fixed",
             top: "50%",
             left: "50%",
-            /* bring your own prefixes */
             transform: "translate(-50%, -50%)",
           }}
         />

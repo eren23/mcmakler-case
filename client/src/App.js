@@ -7,6 +7,7 @@ import Footer from "./components/layout/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
+import NotFound from "./components/notfound/NotFound";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <NavbarComponent />
             <Switch>
               <Route exact path="/page" component={Applicants} />
+              <Route component={NotFound} />
             </Switch>
           </div>
           <div className="container">
