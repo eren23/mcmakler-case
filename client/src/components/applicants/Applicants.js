@@ -44,6 +44,9 @@ const Applicants = ({
     <div
       style={{
         minHeight: "74vh",
+        display: "inline-block",
+        overflow: "auto",
+        width: "100%",
       }}
     >
       {loading ? (
@@ -72,6 +75,8 @@ const Applicants = ({
                 <CardDeck
                   style={{
                     paddingBottom: "25px",
+                    display: "inline-flex",
+                    overflow: "scroll",
                   }}
                   className="justify-content-between"
                 >
@@ -102,6 +107,8 @@ const Applicants = ({
                 <CardDeck
                   style={{
                     marginBottom: "25px",
+                    display: "inline-flex",
+                    overflow: "scroll",
                   }}
                   className="justify-content-between"
                 >
@@ -132,6 +139,8 @@ const Applicants = ({
                 <CardDeck
                   style={{
                     marginBottom: "25px",
+                    display: "inline-flex",
+                    overflow: "scroll",
                   }}
                   className="justify-content-between"
                 >
@@ -162,6 +171,8 @@ const Applicants = ({
                 <CardDeck
                   style={{
                     marginBottom: "25px",
+                    display: "inline-block",
+                    overflow: "scroll",
                   }}
                   className="justify-content-between"
                 >
