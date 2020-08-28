@@ -15,11 +15,11 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_POSTS:
-      return { ...state, posts: payload, loading: false };
+      return { ...state, posts: payload, loading: false, error: {} };
     case POST_ERROR:
       return { ...state, error: payload, loading: false };
     case SEARCH_USER:
-      return { ...state, posts: payload, loading: false };
+      return { ...state, posts: payload, loading: false, error: {} };
     case SEARCH_ERROR:
       return { ...state, error: payload, loading: false };
 

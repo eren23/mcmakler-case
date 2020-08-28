@@ -4,12 +4,7 @@ import NavbarComponent from "./components/layout/Navbar";
 import MiddleNavbar from "./components/layout/MiddleNavbar";
 import UpperNavbar from "./components/layout/UpperNavbar";
 import Footer from "./components/layout/Footer";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import NotFound from "./components/notfound/NotFound";
@@ -23,7 +18,7 @@ function App() {
       }}
     >
       <Provider store={store}>
-        <Router>
+        <Router basename={"/page"}>
           <div className="container">
             <UpperNavbar />
           </div>
@@ -32,8 +27,7 @@ function App() {
             <MiddleNavbar />
             <NavbarComponent />
             <Switch>
-              <Route exact path="/page" component={Applicants} />
-              <Redirect to="/page" />
+              <Route path="/" exact={true} component={Applicants} />
               <Route component={NotFound} />
             </Switch>
           </div>

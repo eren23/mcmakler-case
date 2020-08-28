@@ -14,7 +14,7 @@ const Applicants = ({
   location,
   getUsers,
   searchUser,
-  post: { posts, loading },
+  post: { posts, loading, error },
 }) => {
   useEffect(() => {
     const values = queryString.parse(location.search);
@@ -40,6 +40,11 @@ const Applicants = ({
   const interestNum = filteredInterest.length;
   const offerNum = filteredOffer.length;
 
+  const ifErrorEmpty =
+    Object.keys(error).length === 0 && error.constructor === Object;
+
+  const postsLength = posts.length;
+
   return (
     <div
       style={{
@@ -49,7 +54,18 @@ const Applicants = ({
         width: "100%",
       }}
     >
-      {loading ? (
+      {ifErrorEmpty === false ? (
+        <h1
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          Server Error Occurrred
+        </h1>
+      ) : loading ? (
         <Loader
           type="ThreeDots"
           color="#00BFFF"
@@ -57,12 +73,23 @@ const Applicants = ({
           width={100}
           timeout={3000} //3 secs
           style={{
-            position: "fixed",
+            position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
           }}
         />
+      ) : postsLength === 0 ? (
+        <h1
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          No Matching Results
+        </h1>
       ) : (
         uniq.map((status) => {
           if (status === "Appointment_Set") {
@@ -78,7 +105,7 @@ const Applicants = ({
                     display: "inline-flex",
                     overflow: "auto",
                   }}
-                  className="justify-content-between"
+                  className="justify-content-around"
                 >
                   {filtered.map((status) => {
                     return (
@@ -110,7 +137,7 @@ const Applicants = ({
                     display: "inline-flex",
                     overflow: "auto",
                   }}
-                  className="justify-content-between"
+                  className="justify-content-around"
                 >
                   {filtered.map((status) => {
                     return (
@@ -142,7 +169,7 @@ const Applicants = ({
                     display: "inline-flex",
                     overflow: "auto",
                   }}
-                  className="justify-content-between"
+                  className="justify-content-around"
                 >
                   {filtered.map((status) => {
                     return (
@@ -174,7 +201,7 @@ const Applicants = ({
                     display: "inline-block",
                     overflow: "auto",
                   }}
-                  className="justify-content-between"
+                  className="justify-content-around"
                 >
                   {filtered.map((status) => {
                     return (

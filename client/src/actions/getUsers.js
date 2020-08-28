@@ -26,7 +26,7 @@ export const searchUser = (query) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: SEARCH_ERROR,
-      payload: { msg: `Fetching Users Failed${err}` },
+      payload: { msg: `${err}` },
     });
   }
 };

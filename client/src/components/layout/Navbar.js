@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Navbar, Nav, Form, FormControl, NavDropdown } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Form,
+  FormControl,
+  NavDropdown,
+  InputGroup,
+} from "react-bootstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { searchUser } from "../../actions/getUsers";
@@ -10,12 +17,6 @@ const NavbarComponent = ({ searchUser }) => {
   const [fireRedirect, setFireRedirect] = useState(false);
 
   const onFormSubmit = (e) => {
-    // <Redirect
-    //   to={{
-    //     pathname: "/page",
-    //     search: "?search=formDataObj.myInput",
-    //   }}
-    // />;
     e.preventDefault();
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
@@ -30,12 +31,16 @@ const NavbarComponent = ({ searchUser }) => {
       <Navbar style={{ backgroundColor: "#FFFFFF" }} expand="lg">
         <Nav className="mr-auto">
           <Form inline onSubmit={onFormSubmit}>
-            <FormControl
-              type="text"
-              placeholder="Search"
-              name="myInput"
-              className="mr-sm-1"
-            />
+            <InputGroup>
+              <img src={require("../../static/search.svg")} alt="Support"></img>{" "}
+              <FormControl
+                type="text"
+                placeholder="Search"
+                name="myInput"
+                className="mr-sm-1"
+              />
+            </InputGroup>
+
             <NavDropdown
               style={{
                 border: "1px solid #E6E6E6",
@@ -65,7 +70,7 @@ const NavbarComponent = ({ searchUser }) => {
               <NavDropdown.Item>Offer Accepted</NavDropdown.Item>
             </NavDropdown>
           </Form>
-          {fireRedirect && <Redirect to={"/page/?search=" + query} />}
+          {fireRedirect && <Redirect to={"/?search=" + query} />}
         </Nav>
       </Navbar>
     </div>

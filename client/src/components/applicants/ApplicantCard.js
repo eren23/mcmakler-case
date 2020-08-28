@@ -47,10 +47,21 @@ const ApplicantCard = (props) => {
 
     formattedMoney = formattedOutput.format(bid);
   }
+  const formatPhoneNumber = (phoneNumberString) => {
+    var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
+    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      var intlCode = match[1] ? "+1 " : "";
+      return [intlCode, "(", match[2], ") ", match[3], "-", match[4]].join("");
+    }
+    return null;
+  };
+
+  const formattedPhone = formatPhoneNumber(phone.toString());
 
   return (
-    <div>
-      <Card className="mt-1 mb-4">
+    <div style={{ display: "inline-flex" }}>
+      <Card className="mt-1 mb-4 mx-3">
         <p
           className="position-flex text-center rounded-circle"
           style={{
@@ -73,7 +84,9 @@ const ApplicantCard = (props) => {
           <Card.Title className="text-center m-1">
             {name} {surname}
           </Card.Title>
-          <Card.Text className="text-center m-1">{phone}</Card.Text>
+          <Card.Text className="text-center m-1">
+            +90 {formattedPhone}
+          </Card.Text>
           <Card.Text className="text-center m-1">{email}</Card.Text>
           <Card.Text
             style={{

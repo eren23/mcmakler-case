@@ -11,10 +11,10 @@ router.post(
   "/",
   [
     check("name", "Name is required").not().isEmpty(),
-    check("surname", "Please inclue a valid email").not().isEmpty(),
+    check("surname", "Surname is required").not().isEmpty(),
     check("email", "Please inclue a valid email").isEmail(),
-    check("phone", "Please inclue a valid email").not().isEmpty(),
-    check("status", "Please inclue a valid email").not().isEmpty(),
+    check("phone", "Phone number needs to be 10 digit").isLength({ max: 10 }),
+    check("status", "Status is required").not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -69,14 +69,19 @@ router.get("/", async (req, res) => {
 router.get("/search", async (req, res) => {
   try {
     const searchquery = req.query.searchquery;
+
+    const nameCapitalized =
+      searchquery.charAt(0).toUpperCase() + searchquery.slice(1);
+
     if (searchquery) {
       const user = await User.find({
         $or: [
-          { name: searchquery },
-          { surname: searchquery },
+          { name: nameCapitalized },
+          { surname: nameCapitalized },
           { email: searchquery },
         ],
       });
+
       if (user) {
         res.json(user);
       } else {
