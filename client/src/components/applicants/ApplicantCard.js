@@ -106,9 +106,7 @@ const ApplicantCard = (props) => {
                   ? "Viewed"
                   : status === "Interested"
                   ? "Interested"
-                  : status === "Accepted"
-                  ? "Accepted"
-                  : ""}
+                  : status === "Accepted" && "Accepted"}
                 &nbsp;
                 {/* {trimmed} &nbsp; */}
                 <Moment format="DD MMMM HH:mm">{date}</Moment>
