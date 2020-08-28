@@ -76,7 +76,7 @@ const Applicants = ({
                   style={{
                     paddingBottom: "25px",
                     display: "inline-flex",
-                    overflow: "scroll",
+                    overflow: "auto",
                   }}
                   className="justify-content-between"
                 >
@@ -108,7 +108,7 @@ const Applicants = ({
                   style={{
                     marginBottom: "25px",
                     display: "inline-flex",
-                    overflow: "scroll",
+                    overflow: "auto",
                   }}
                   className="justify-content-between"
                 >
@@ -140,7 +140,7 @@ const Applicants = ({
                   style={{
                     marginBottom: "25px",
                     display: "inline-flex",
-                    overflow: "scroll",
+                    overflow: "auto",
                   }}
                   className="justify-content-between"
                 >
@@ -172,7 +172,7 @@ const Applicants = ({
                   style={{
                     marginBottom: "25px",
                     display: "inline-block",
-                    overflow: "scroll",
+                    overflow: "auto",
                   }}
                   className="justify-content-between"
                 >
