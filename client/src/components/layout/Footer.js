@@ -10,7 +10,7 @@ const Footer = () => {
         expand="lg"
       >
         <Navbar.Text className="mx-auto order-0">
-          AGB - Datenschutz - Impressum
+          AGB • Datenschutz • Impressum
         </Navbar.Text>
       </Navbar>
     </div>

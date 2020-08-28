@@ -59,9 +59,11 @@ const ApplicantCard = (props) => {
 
   const formattedPhone = formatPhoneNumber(phone.toString());
 
+  const trimmed = status.replace(/_/g, " ");
+
   return (
     <div style={{ display: "inline-flex" }}>
-      <Card className="mt-1 mb-4 mx-3">
+      <Card className="mt-1 mb-4 mx-4">
         <p
           className="position-flex text-center rounded-circle"
           style={{
@@ -88,16 +90,29 @@ const ApplicantCard = (props) => {
             +90 {formattedPhone}
           </Card.Text>
           <Card.Text className="text-center m-1">{email}</Card.Text>
-          <Card.Text
-            style={{
-              backgroundColor: "#9D9D9D",
-              color: "#FFFFFF",
-              borderRadius: "2px",
-            }}
-            className="text-center m-1"
-          >
+          <Card.Text className="text-center m-1">
             <small>
-              <Moment>{date}</Moment>
+              <span
+                style={{
+                  backgroundColor: "#9D9D9D",
+                  color: "#FFFFFF",
+                  borderRadius: "2px",
+                  padding: "0 2px",
+                }}
+              >
+                {status === "Appointment_Set"
+                  ? "Appointment"
+                  : status === "Propety_Viewed"
+                  ? "Viewed"
+                  : status === "Interested"
+                  ? "Interested"
+                  : status === "Accepted"
+                  ? "Accepted"
+                  : ""}
+                &nbsp;
+                {/* {trimmed} &nbsp; */}
+                <Moment format="DD MMMM HH:mm">{date}</Moment>
+              </span>
             </small>
           </Card.Text>
           {bid && (
@@ -107,6 +122,7 @@ const ApplicantCard = (props) => {
                   backgroundColor: "#FEB902",
                   borderRadius: "2px",
                   color: "#FFFFFF",
+                  padding: "0 3px",
                 }}
               >
                 <strong>{formattedMoney}</strong>
@@ -114,9 +130,9 @@ const ApplicantCard = (props) => {
             </Card.Text>
           )}
         </Card.Body>
-        <Card.Footer className="text-center m-1">
+        {/* <Card.Footer className="text-center m-1">
           <small className="text-muted">{status}</small>
-        </Card.Footer>
+        </Card.Footer> */}
       </Card>
     </div>
   );
