@@ -9,7 +9,7 @@ const Footer = () => {
         sticky="bottom"
         expand="lg"
       >
-        <Navbar.Text className="mx-auto order-0">
+        <Navbar.Text className="mx-auto">
           AGB • Datenschutz • Impressum
         </Navbar.Text>
       </Navbar>

@@ -3,9 +3,10 @@ const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const config = require("config");
 const User = require("../models/User");
+const FuzzySearch = require("fuzzy-search")
 
 // @route       POST api/users
-// @desc        Register user
+// @desc        Register applicant
 // @access      Public
 router.post(
   "/",
@@ -51,7 +52,7 @@ router.post(
 );
 
 // @route       GET api/users/
-// @desc        Get all users
+// @desc        Get all applicants
 // @access      Public
 router.get("/", async (req, res) => {
   try {
@@ -70,20 +71,36 @@ router.get("/search", async (req, res) => {
   try {
     const searchquery = req.query.searchquery;
 
-    const nameCapitalized =
-      searchquery.charAt(0).toUpperCase() + searchquery.slice(1);
+    const newArr = searchquery.split(" ");
 
     if (searchquery) {
-      const user = await User.find({
-        $or: [
-          { name: nameCapitalized },
-          { surname: nameCapitalized },
-          { email: searchquery },
-        ],
+
+      const user = await User.find();
+
+      const searcher = new FuzzySearch(user, ['name', 'surname', 'email'], {
+        caseSensitive: false,
       });
 
-      if (user) {
-        res.json(user);
+      let result;
+
+      newArr.forEach(arr => {
+        result = searcher.search(arr);
+        if (result.length != 0) {
+          return result;
+        }
+      })
+
+      //OLD SEARCH LOGIC IS BELOW REPLACED WITH FUZZY SEARCH NOW
+      // const user = await User.find({
+      //   $or: [
+      //     { name: searchquery },
+      //     { surname: searchquery },
+      //     { email: searchquery },
+      //   ],
+      // });
+
+      if (result) {
+        res.json(result);
       } else {
         res.status(400).send({ response: "Query Failed" });
       }

@@ -7,7 +7,7 @@ var app = express();
 
 app.use(cors());
 
-//Connect to our db finally
+
 connectDB();
 
 //Init middleware
@@ -17,7 +17,6 @@ app.get("/", (req, res) => {
   res.send("API Running");
 });
 
-//Define routes
 app.use("/api/users", require("./routes/api/users"));
 
 //Serve static assests in production

@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { searchUser } from "../../actions/getUsers";
 import { Redirect } from "react-router-dom";
+import "./Navbar.css";
 
 const NavbarComponent = ({ searchUser }) => {
   const [query, setQuery] = useState("");
@@ -42,12 +43,7 @@ const NavbarComponent = ({ searchUser }) => {
             </InputGroup>
 
             <NavDropdown
-              style={{
-                border: "1px solid #E6E6E6",
-                borderRadius: "3px",
-                marginRight: "5px",
-                marginTop: "2px",
-              }}
+              className="Dropdown"
               title="Bids"
               id="basic-nav-dropdown"
             >
@@ -55,12 +51,7 @@ const NavbarComponent = ({ searchUser }) => {
               <NavDropdown.Item>From Higher</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown
-              style={{
-                border: "1px solid #E6E6E6",
-                borderRadius: "3px",
-                marginRight: "5px",
-                marginTop: "2px",
-              }}
+              className="Dropdown"
               title="Status"
               id="basic-nav-dropdown"
             >

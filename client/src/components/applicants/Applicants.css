@@ -1,0 +1,20 @@
+.ApplicantOuter {
+  min-height: 74vh;
+  display: inline-block;
+  overflow: auto;
+  width: 100%;
+}
+
+.ApplicantsCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.CardDeck {
+  padding-bottom: 25px;
+  display: inline-flex;
+  overflow: auto;
+}

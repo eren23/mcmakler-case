@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import Moment from "react-moment";
+import "./ApplicantCard.css";
 
 const ApplicantCard = (props) => {
   const { name, surname, email, status, bid, date, phone } = props;
@@ -59,20 +60,12 @@ const ApplicantCard = (props) => {
 
   const formattedPhone = formatPhoneNumber(phone.toString());
 
-  const trimmed = status.replace(/_/g, " ");
-
   return (
     <div style={{ display: "inline-flex" }}>
       <Card className="mt-1 mb-4 mx-4">
         <p
-          className="position-flex text-center rounded-circle"
+          className="position-flex text-center rounded-circle Avatar"
           style={{
-            width: "50px",
-            height: "50px",
-            margin: "auto",
-            paddingTop: "15px",
-            marginBottom: "0px",
-            marginTop: "20px",
             backgroundColor: `#${randomColor}`,
             color: `#${lighterColor}`,
           }}
@@ -92,14 +85,7 @@ const ApplicantCard = (props) => {
           <Card.Text className="text-center m-1">{email}</Card.Text>
           <Card.Text className="text-center m-1">
             <small>
-              <span
-                style={{
-                  backgroundColor: "#9D9D9D",
-                  color: "#FFFFFF",
-                  borderRadius: "2px",
-                  padding: "0 2px",
-                }}
-              >
+              <span className="SmallText">
                 {status === "Appointment_Set"
                   ? "Appointment"
                   : status === "Propety_Viewed"
@@ -108,7 +94,6 @@ const ApplicantCard = (props) => {
                   ? "Interested"
                   : status === "Accepted" && "Accepted"}
                 &nbsp;
-                {/* {trimmed} &nbsp; */}
                 <Moment format="DD MMMM HH:mm">{date}</Moment>
               </span>
             </small>
@@ -116,21 +101,16 @@ const ApplicantCard = (props) => {
           {bid && (
             <Card.Text className="text-center m-1">
               <span
+                className="SmallText"
                 style={{
-                  backgroundColor: "#FEB902",
-                  borderRadius: "2px",
-                  color: "#FFFFFF",
-                  padding: "0 3px",
+                  backgroundColor: "#feb902",
                 }}
               >
-                <strong>{formattedMoney}</strong>
+                <b>Bid {formattedMoney}</b>
               </span>
             </Card.Text>
           )}
         </Card.Body>
-        {/* <Card.Footer className="text-center m-1">
-          <small className="text-muted">{status}</small>
-        </Card.Footer> */}
       </Card>
     </div>
   );
